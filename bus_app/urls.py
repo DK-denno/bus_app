@@ -11,4 +11,9 @@ urlpatterns = [
     path('api/token/refresh/',
         jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('user/create/', views.create_user, name='create_user'),
+    path('createRole/', views.create_role, name='createRole'),
+    path('profile/', views.get_profile, name='profile'),
+    path("createVehicle", views.create_vehicle, name="createVehicle"),
+    path("updateVehicle", views.update_vehicle, name="updateVehicle"),
+    path("deleteVehicle", views.delete_vehicle, name="deleteVehicle"),
 ]
