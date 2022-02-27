@@ -262,3 +262,18 @@ def get_Squads(request):
         return Response(
             {'data': e},
             status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_squad(request):
+    serializer = SquadSerializer.SquadSerializer(data=request.data)
+    serializer.updateSquad(validated_data=request.data, user=request.user)
+    if serializer.is_valid():
+        return Response(
+            {'data': serializer.data},
+            status=status.HTTP_201_CREATED
+        )
+    return Response(
+        {'data': serializer.errors},
+        status=status.HTTP_400_BAD_REQUEST
+    )
