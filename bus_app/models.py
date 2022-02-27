@@ -39,7 +39,7 @@ class Vehicle(models.Model):
         ordering=['-id']
 
 class Location(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return self.name
@@ -54,7 +54,7 @@ class Routes(models.Model):
         related_name="routesTo", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.locationFrom.name
 
     class Meta:
         ordering=['-id']
@@ -78,13 +78,13 @@ class StopsOnRoutes(models.Model):
 class Squad(models.Model):
     vehicle = models.ForeignKey(Vehicle,
         related_name="squad", on_delete=models.CASCADE)
+    regNumber = models.CharField(max_length=20)
     route = models.ForeignKey(Routes,
         related_name="squad", on_delete=models.CASCADE)
     depatureTime = models.DateTimeField(auto_now_add=True)
     arrivalTime = models.DateTimeField(auto_now_add=True)
-    seatsBooked = models.BigIntegerField(null=False, blank=False)
-    date = models.DateField(null=False)
-
+    seatsBooked = models.BigIntegerField(null=False, blank=False, default=0)
+    priority = models.BigIntegerField(null=False, blank=False)
 
     def __str__(self):
         return self.vehicle
