@@ -57,7 +57,7 @@ python manage.py runserver
 Open terminal on `localhost:8000`
 
 ## Known bugs
-= Lacking Mpesa
+    - Lacking Mpesa
 
 ## Technologies used
     - Python 3.6
