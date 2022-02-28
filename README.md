@@ -36,7 +36,7 @@ CREATE DATABASE bus_app;
 Create .env file and paste paste the following filling where appropriate:
 ```python
 SECRET_KEY = '<Secret_key>'
-DBNAME = 'insta'
+DBNAME = '<db name>'
 USER = '<Username>'
 PASSWORD = '<password>'
 DEBUG = True
