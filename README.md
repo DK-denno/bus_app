@@ -41,7 +41,7 @@ USER = '<Username>'
 PASSWORD = '<password>'
 DEBUG = True
 
-[N/B -> Edit your 'ALLOWED_HOSTS' to add your locahost]
+[N/B] -> Edit your 'ALLOWED_HOSTS' to add your locahost]
 
 ```
 ### Run initial Migration
