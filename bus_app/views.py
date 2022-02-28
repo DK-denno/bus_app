@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
+
+from .Serializers import BookingSerializer
 from .Serializers import UserSerializer
 from .Serializers import RoleSerializer
 from .Serializers import ProfileSerializer
@@ -16,7 +18,7 @@ from .Serializers import RoutesSerializer
 from .Serializers import StopsSerializer
 from .Serializers import SquadSerializer
 from rest_framework.decorators import api_view, permission_classes
-from .models import Profile, Squad, Vehicle, Role, Location, Routes, StopsOnRoutes
+from .models import Booking, Profile, Squad, Vehicle, Role, Location, Routes, StopsOnRoutes
 from datetime import datetime
 
 # Create your views here.
@@ -267,7 +269,7 @@ def get_Squads(request):
 @permission_classes([IsAuthenticated])
 def update_squad(request):
     serializer = SquadSerializer.SquadSerializer(data=request.data)
-    serializer.updateSquad(validated_data=request.data, user=request.user)
+    serializer.updateSquad(validated_data=request.data)
     if serializer.is_valid():
         return Response(
             {'data': serializer.data},
@@ -277,3 +279,36 @@ def update_squad(request):
         {'data': serializer.errors},
         status=status.HTTP_400_BAD_REQUEST
     )
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_bookings(request):
+    serializer = BookingSerializer.BookingSerializer(data=request.data)
+    serializer.createBooking(validated_data=request.data, user=request.user)
+    if serializer.is_valid():
+         return Response(
+            {'data': serializer.data},
+            status=status.HTTP_201_CREATED
+        )
+    return Response(
+        {'data': serializer.errors},
+        status=status.HTTP_400_BAD_REQUEST
+    )
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def get_Bookings(request):
+    bookings = Booking.objects.filter(passenger = request.user)
+    print(bookings)
+    serializer = BookingSerializer.BookingSerializer(bookings, many=True)
+    return Response(
+        {'data': serializer.data},
+        status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def delete_Booking(request):
+    Booking.objects.get(pk = request.data.get("id", None)).delete()
+    return Response(
+        {'data': {"message":"success"}},
+        status=status.HTTP_201_CREATED)

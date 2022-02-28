@@ -100,7 +100,7 @@ class Booking(models.Model):
     seatNumber = models.BigIntegerField(null=False, blank=False)
     stopLocation = models.ForeignKey(Location,
         related_name="bookings", on_delete=models.CASCADE)
-
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.passenger.username

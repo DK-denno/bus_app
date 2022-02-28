@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path, include
 from . import views
 from rest_framework_simplejwt import views as jwt_views
@@ -24,5 +25,8 @@ urlpatterns = [
     path("createStops/", views.create_Stops, name="createStops"),
     path("getStops/", views.get_Stops, name="getStops"),
     path("createSquads/", views.create_Squad, name="createSquads"),
-    path("getSquads/", views.get_Squads, name="getSquads")
+    path("getSquads/", views.get_Squads, name="getSquads"),
+    path("updateSquad/", views.update_squad, name="updateSquad"),
+    path("createBookings/", views.create_bookings, name="createBookings"),
+    path("getBookings/", views.get_Bookings, name="getBookings")
 ]

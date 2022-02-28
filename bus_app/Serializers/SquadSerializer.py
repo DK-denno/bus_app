@@ -35,7 +35,11 @@ class SquadSerializer(serializers.ModelSerializer):
         if validated_data.get('id', None) is not None:
             squad = Squad.objects.get(pk
                 = validated_data.get('id', None))
-            squad.depatureTime = datetime.fromtimestamp(validated_data.get('depatureTime', None))
-            squad.arrivalTime = datetime.fromtimestamp(validated_data.get('arrivalTime', None))
+            squad.depatureTime = datetime.fromtimestamp(validated_data.get('depatureTime', datetime.timestamp(squad.depatureTime)))
+            squad.arrivalTime = datetime.fromtimestamp(validated_data.get('arrivalTime', datetime.timestamp(squad.arrivalTime)))
+            squad.route = Routes.objects.get(pk=validated_data.get('route', squad.route.id))
+            squad.vehicle = Vehicle.objects.get(regNumber=validated_data.get('regNumber', squad.vehicle.id))
+            squad.priority = validated_data.get('priority', squad.priority)
+            squad.save()
             return squad
         return AttributeError("'id' is missing")
