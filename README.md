@@ -1,4 +1,4 @@
-# [BUS-APP]()
+# [BUS-APP](https://buupasss.herokuapp.com/)
 #### By **[Dennis Kamau]**
 
 ## Description
@@ -11,7 +11,7 @@ This is a simple backend app providing ais for a bus booking service.
 2. Python3.6 o higher
 3. [Postgres](https://www.postgresql.org/download/)
 4. [python virtualenv](https://gist.github.com/Geoyi/d9fab4f609e9f75941946be45000632b)
-5. [PIP]
+5. PIP
 
 ### Clone the Repo
 Run the following command on the terminal:
