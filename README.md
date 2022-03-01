@@ -2,13 +2,13 @@
 #### By **[Dennis Kamau]**
 
 ## Description
-This is a simple backend app providing ais for a bus booking service.
+This is a simple backend app providing apis for a bus booking service.
 
 ## Set Up and Installations
 
 ### Prerequisites
 1. Ubuntu Software
-2. Python3.6 o higher
+2. Python3.6 or higher
 3. [Postgres](https://www.postgresql.org/download/)
 4. [python virtualenv](https://gist.github.com/Geoyi/d9fab4f609e9f75941946be45000632b)
 5. PIP
